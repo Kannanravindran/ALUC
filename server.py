@@ -9,7 +9,11 @@ def index():
 
 @app.route('/groupify',methods=['get'])
 def groupify():
-    return jsonify({"result":exec_schur(request.args['n'],request.args['k'])})
+    if len(request.args) > 0:
+        response = {"result":exec_schur(request.args['n'],request.args['k'])}
+    else:
+        response = {"result":exec_schur()}
+    return jsonify(response)
 
 if __name__ == '__main__':
     app.run()
