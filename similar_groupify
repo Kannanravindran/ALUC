@@ -1,0 +1,16 @@
+% File 'similar_groupify'
+
+
+num(1). num(2). num(3). num(14). num(15). num(16). num(27). num(28). num(29). num(30).
+group(1). group(2). group(3).
+
+% Every number should be in exactly one group
+1 { a(I, X) : group(I) } 1 :- num(X).
+
+% Every group should have a minimum of 3 and a maximum of 4 numbers
+3 { a(I, X) : num(X)  } 4 :- group(I).
+
+% Marks difference cannot be more than 5
+:- a(I, X), a(I, Y), |X-Y|>5.
+
+#show a/2.
