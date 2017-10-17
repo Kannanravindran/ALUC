@@ -1,0 +1,1 @@
+PROJECT_PATH = "/Users/kannanravindran/Desktop/dev/AULC-Backend/"

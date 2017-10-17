@@ -1,0 +1,27 @@
+from subprocess import call,Popen,PIPE
+from config import *
+from ast import literal_eval
+
+def exec_schur(_n=30,_k=10):
+    outputFile = open("program_output.txt", "w")
+    call([PROJECT_PATH+"core/clingo/clingo", PROJECT_PATH+"core/schur", "-c", "n=%s" % _n, "-c", "k=%s" % _k, "--verbose=0"], stdout=outputFile)
+    outputFile.close()
+    readFile = open("program_output.txt", "r")
+
+    groups = readFile.readline().strip().split(" ")
+    # print groups
+    readFile.close()
+    output = {}
+    for group in groups:
+        try:
+            g_key,g_value = literal_eval(group[1:])
+        except Exception as e:
+            return {"error":"Unsatisfiable"}
+        if g_key in output.keys():
+            output[g_key].append(g_value)
+        else:
+            output[g_key] = [g_value]
+
+    return output
+
+print exec_schur(10,2)
