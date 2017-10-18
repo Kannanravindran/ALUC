@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ALUC - Groupify</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container" style="padding: 0.5%">
+    <div class="row">
+        <div class="col-md-4">
+            <span><strong>Scores of students:</strong></span>
+            <ul>
+                {% for score in scores %}
+                    <li>
+                        {{ score }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-8">
+        <div style="margin-left: 5%; margin-right: 5%">
+            {% for group in groups %}
+                    <div class="col-md-4" >
+                        <span><strong>Group:</strong> {{ group }}</span>
+                        <span><strong>Students:</strong></span>
+                        <ul>
+                            {% for each in groups[group] %}
+                                <li>{{ each }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>

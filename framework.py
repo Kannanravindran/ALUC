@@ -26,7 +26,7 @@ def exec_schur(_n=30,_k=10):
 
 def exec_similar(_n=30,_k=10):
     outputFile = open("program_output_similar.txt", "w")
-    call([PROJECT_PATH+"core/clingo/clingo", PROJECT_PATH+"core/similar_groupify", PROJECT_PATH+"core/data", "-c", "n=%s" % _n, "-c", "k=%s" % _k, "--verbose=0"], stdout=outputFile)
+    call([PROJECT_PATH+"core/clingo/clingo", PROJECT_PATH+"core/similar_groupify", PROJECT_PATH+"core/data", "--verbose=0"], stdout=outputFile)
     outputFile.close()
     readFile = open("program_output_similar.txt", "r")
 
@@ -48,7 +48,7 @@ def exec_similar(_n=30,_k=10):
 
 def exec_dissimilar(_n=30,_k=10):
     outputFile = open("program_output_similar.txt", "w")
-    call([PROJECT_PATH+"core/clingo/clingo", PROJECT_PATH+"core/dissimilar_groupify", PROJECT_PATH+"core/data", "-c", "n=%s" % _n, "-c", "k=%s" % _k, "--verbose=0"], stdout=outputFile)
+    call([PROJECT_PATH+"core/clingo/clingo", PROJECT_PATH+"core/dissimilar_groupify", PROJECT_PATH+"core/data", "--verbose=0"], stdout=outputFile)
     outputFile.close()
     readFile = open("program_output_similar.txt", "r")
 
@@ -69,4 +69,4 @@ def exec_dissimilar(_n=30,_k=10):
     return output
 
 if __name__ == '__main__':
-    print exec_schur(10,2)
+    print exec_similar()
