@@ -1,19 +1,20 @@
-from flask import Flask,json,request,jsonify
+from flask import Flask,json,request,jsonify, render_template
 from framework import *
+from config import scores
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return '<b>Welcome to AULC</b>'
+    return render_template("index.html")
 
-@app.route('/groupify',methods=['get'])
+@app.route('/groupify-similar',methods=['get'])
 def groupify():
-    if len(request.args) > 0:
-        response = {"result":exec_schur(request.args['n'],request.args['k'])}
-    else:
-        response = {"result":exec_schur()}
-    return jsonify(response)
+    return render_template("groupified.html",groups=exec_similar(),scores=scores)
+
+@app.route('/groupify-dissimilar',methods=['get'])
+def groupify_similar():
+    return render_template("groupified.html", groups=exec_dissimilar(),scores=scores)
 
 if __name__ == '__main__':
     app.run()

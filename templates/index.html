@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <title>Welcome to AULC</title>
+    <title>Welcome to ALUC</title>
     <style>
     body{
-      background:url(board.jpg) no-repeat center center fixed;
+      background:url({{ url_for('static',filename='board.jpg') }}) no-repeat center center fixed;
       background-repeat:no-repeat;
       background-size:100% 100% ;
     }
@@ -79,16 +79,16 @@
         </div>
         <div class="row">
           <div class="col-md-12" style="display: flex;  align-items: center;  justify-content: center; height: 100px;">
-            <button href="https://www.google.com" class="btn btn-primary btn-lg" style="">
+            <a href="/groupify-similar"><button  class="btn btn-primary btn-lg" style="">
             <span>Groupify using <br/> Similar scores</span>
-            </button>
+            </button></a>
           </div>
         </div>
         <div class="row">
          <div class="col-md-12" style="display: flex;  align-items: center;  justify-content: center;  height: 100px;">
-           <button href="https://www.google.com" class="btn btn-primary btn-lg">
+           <a href="/groupify-dissimilar"><button class="btn btn-primary btn-lg">
              <span>Groupify using <br/> Distributed scores</span>
-           </button>
+           </button></a>
          </div>
        </div>
 
