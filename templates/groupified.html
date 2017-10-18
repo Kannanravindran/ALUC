@@ -4,26 +4,48 @@
     <meta charset="UTF-8">
     <title>ALUC - Groupify</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body{
+            color: white;
+            background:url({{ url_for('static',filename='board.jpg') }}) no-repeat center center fixed;
+            background-repeat:no-repeat;
+            background-size:100% 100% ;
+        }
+    </style>
 </head>
 <body>
-<div class="container" style="padding: 0.5%">
+<div class="container" style="padding: 7%">
     <div class="row">
         <div class="col-md-4">
-            <span><strong>Scores of students:</strong></span>
-            <ul>
-                {% for score in scores %}
-                    <li>
-                        {{ score }}
-                    </li>
-                {% endfor %}
-            </ul>
+            <div class="row">
+                <span><strong>Scores of students:</strong></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul>
+                        {% for score in scores[:15] %}
+                            <li>
+                                {{ score }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        {% for score in scores[15:] %}
+                            <li>
+                                {{ score }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="col-md-8">
         <div style="margin-left: 5%; margin-right: 5%">
             {% for group in groups %}
                     <div class="col-md-4" >
-                        <span><strong>Group:</strong> {{ group }}</span>
-                        <span><strong>Students:</strong></span>
+                        <span><strong>Group:</strong> {{ group }}</span><br>
                         <ul>
                             {% for each in groups[group] %}
                                 <li>{{ each }}</li>
