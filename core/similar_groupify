@@ -1,12 +1,12 @@
 % File 'similar_groupify'
 
 % Every number should be in exactly one group
-1 { a(I, X) : group(I) } 1 :- num(X).
+1 { a(GroupNum, Id, Score) : group(GroupNum) } 1 :- studentScore(Id, Score).
 
 % Every group should have a minimum of 3 and a maximum of 4 numbers
-3 { a(I, X) : num(X)  } 4 :- group(I).
+3 { a(GroupNum, Id, Score) : studentScore(Id, Score)  } 4 :- group(GroupNum).
 
 % Marks difference cannot be more than 5
-:- a(I, X), a(I, Y), |X-Y|>5.
+:- a(GroupNum, Id1, Score1), a(GroupNum, Id2, Score2), |Score1-Score2|>5.
 
-#show a/2.
+#show a/3.
