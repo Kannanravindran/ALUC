@@ -10,5 +10,3 @@
 :- a(GroupNum, Id1, Score1), a(GroupNum, Id2, Score2), |Score1-Score2|==1.
 
 #show a/3.
-
-%:- a(GroupNum, Id1, Score1), a(GroupNum, Id2, Score2), |Score1-Score2|>5.
