@@ -1,12 +1,12 @@
-% File 'similar_groupify'
+% File 'dissimilar_groupify'
 
 % Every number should be in exactly one group
-1 { a(I, X) : group(I) } 1 :- num(X).
+1 { a(GroupNum, Id, Score) : group(GroupNum) } 1 :- studentScore(Id, Score).
 
 % Every group should have a minimum of 3 and a maximum of 4 numbers
-{ a(I, X) : num(X)  } 4 :- group(I).
+3 { a(GroupNum, Id, Score) : studentScore(Id, Score)  } 4 :- group(GroupNum).
 
 % Avoid closely matched students
-:- a(I, X), a(I, Y), Y==X+1.
+:- a(GroupNum, Id1, Score1), a(GroupNum, Id2, Score2), |Score1-Score2|==1.
 
-#show a/2.
+#show a/3.
