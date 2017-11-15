@@ -25,10 +25,10 @@ def exec_schur(_n=30,_k=10):
     return output
 
 def exec_similar(_n=30,_k=10):
-    outputFile = open("program_output_similar.txt", "w")
+    outputFile = open(PROJECT_PATH+"program_output.txt", "w")
     call([PROJECT_PATH+"core/clingo/clingo", PROJECT_PATH+"core/similar_groupify", PROJECT_PATH+"core/sample_data", "--verbose=0"], stdout=outputFile)
     outputFile.close()
-    readFile = open("program_output_similar.txt", "r")
+    readFile = open(PROJECT_PATH+"program_output_similar.txt", "r")
 
     groups = readFile.readline().strip().split(" ")
     # print groups
@@ -47,10 +47,10 @@ def exec_similar(_n=30,_k=10):
     return output
 
 def exec_dissimilar(_n=30,_k=10):
-    outputFile = open("program_output_similar.txt", "w")
+    outputFile = open(PROJECT_PATH+"program_output_similar.txt", "w")
     call([PROJECT_PATH+"core/clingo/clingo", PROJECT_PATH+"core/dissimilar_groupify", PROJECT_PATH+"core/data", "--verbose=0"], stdout=outputFile)
     outputFile.close()
-    readFile = open("program_output_similar.txt", "r")
+    readFile = open(PROJECT_PATH+"program_output_similar.txt", "r")
 
     groups = readFile.readline().strip().split(" ")
     # print groups
