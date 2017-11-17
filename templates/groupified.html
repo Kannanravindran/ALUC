@@ -21,23 +21,23 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <ul>
-                        {% for score in scores[:15] %}
+                    <ol>
+                        {% for student in students %}
                             <li>
-                                {{ score }}
+                                {{ students[student]['name'] }}&nbsp;:&nbsp;{{ students[student]['score'] }}
                             </li>
                         {% endfor %}
-                    </ul>
+                    </ol>
                 </div>
-                <div class="col-md-6">
-                    <ul>
-                        {% for score in scores[15:] %}
-                            <li>
-                                {{ score }}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+{#                <div class="col-md-6">#}
+{#                    <ul>#}
+{#                        {% for score in scores[15:] %}#}
+{#                            <li>#}
+{#                                {{ score }}#}
+{#                            </li>#}
+{#                        {% endfor %}#}
+{#                    </ul>#}
+{#                </div>#}
             </div>
         </div>
         <div class="col-md-8">
@@ -47,7 +47,7 @@
                         <span><strong>Group:</strong> {{ group }}</span><br>
                         <ul>
                             {% for each in groups[group] %}
-                                <li>{{ each }}</li>
+                                <li>{{ students[each[0]]['name'] }}</li>
                             {% endfor %}
                         </ul>
                     </div>

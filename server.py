@@ -16,11 +16,11 @@ def index():
 
 @app.route('/groupify-similar',methods=['get'])
 def groupify():
-    return render_template("groupified.html",groups=exec_similar(),scores=[1,2,3,4,5,6,7,8,9,10])
+    return render_template("groupified.html",groups=exec_similar(),students=student_dict)
 
 @app.route('/groupify-dissimilar',methods=['get'])
 def groupify_similar():
-    return render_template("groupified.html", groups=exec_dissimilar(),scores=scores)
+    return render_template("groupified.html", groups=exec_dissimilar(),students=student_dict)
 
 @app.route('/collab',methods=['get'])
 def collab():

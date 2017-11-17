@@ -22,16 +22,14 @@
     <style>
         html { height: 100%; }
         body { margin: 0; height: 100%; position: relative;
-        background-color: #000;
-        color: #fff;
+{#        background-color: #000;#}
+{#        color: #fff;#}
       }
-        /* Height / width / positioning can be customized for your use case.
-           For demo purposes, we make firepad fill the entire browser. */
         div .row.firetext{
             border-style: solid;
             border-color: #000000 #000000;
-            margin: 10px;
-            pointer-events: none;
+{#            margin: 10px;#}
+{#            pointer-events: none;#}
         }
         #firepad-container {
             width: 100%;
@@ -49,6 +47,14 @@
         .firetext {
             height: 50%;
         }
+        .noselect {
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+               -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently
+                                          supported by Chrome and Opera */
+        }
     </style>
 
 </head>
@@ -63,28 +69,23 @@
         </div>
         <div class="col-md-5 firediv">
             <div class="row firetext" >
-                <h4>Notes from <strong>@{{ users[0] }}</strong></h4>
-                <div id="firepad-container-1" class="firetext"></div>
+                <h4>Notes from <strong>@{{ users[0] }}</strong>&nbsp;Similarity Score: <p id="fire1-score"></p></h4>
+                <div id="firepad-container-1" class="firetext noselect" ></div>
             </div>
             <div class="row firetext">
-                <h4>Notes from <strong>@{{ users[1] }}</strong></h4>
-                <div id="firepad-container-2" class="firetext"></div>
+                <h4>Notes from <strong>@{{ users[1] }}</strong>&nbsp;Similarity Score: <p id="fire2-score"></p></h4>
+                <div id="firepad-container-2" class="firetext noselect"></div>
             </div>
         </div>
     </div>
 </div>
 
 
-<script>
-    //Remove blur of firepad on click
-      $(document).ready(function() {
-
-        $('.col-md-5').on('click', function() {
-          $("#firepad-container-1").css('-webkit-filter', 'none');
-          $("#firepad-container-2").css('-webkit-filter', 'none');
-      });
-    });
-</script>
+{#<script>#}
+{#    //Remove blur of firepad on click#}
+{#      $(document).ready(function() {#}
+{#    });#}
+{#</script>#}
 <script>
     function init() {
         var config = {
@@ -119,19 +120,38 @@
             { richTextToolbar: false, richTextShortcuts: true });
         var firepad2 = Firepad.fromCodeMirror(firepadRef2, codeMirror2,
             { richTextToolbar: false, richTextShortcuts: true });
+
+            $('#firepad-container').bind('keyup keydown', function() {
+                var regex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&/=]*)/gi;
+                var fire_text = firepad.getText();
+                var characters = fire_text.replace(regex,'').replace(/\s/g,'').length;
+                var words = fire_text.split(' ').length;
+                var sentence = fire_text.split('.').length;
+                console.log("Words: ",words," Characters: ",characters," Sentences: ",sentence);
+                if (characters >= 300 && words >= 90 && sentence >= 8) {
+                    $("#firepad-container-1").css('-webkit-filter', 'none');
+                    $("#firepad-container-2").css('-webkit-filter', 'none');
+                }else if (characters < 300 || words < 90 || sentence < 8 ) {
+                    $("#firepad-container-1").css('-webkit-filter', 'blur(15px)');
+                    $("#firepad-container-2").css('-webkit-filter', 'blur(15px)');
+                }
+
+                $('#fire1-score').html((similarity(fire_text,firepad1.getText())*100));
+                $('#fire2-score').html((similarity(fire_text,firepad2.getText())*100));
+                console.log("sim1: ",typeof similarity(fire_text,firepad1.getText()));
+                console.log("sim2: ",similarity(fire_text,firepad2.getText()));
+            });
     }
 
     // Helper to get hash from end of URL or generate a random one.
     function getExampleRef() {
         var ref = firebase.database().ref();
-{#        var hash = window.location.hash.replace(/#/g, '');#}
         var hash = getParameterByName('user');
         console.log(hash);
         if (hash) {
             ref = ref.child(hash);
         } else {
             ref = ref.push(); // generate unique location.
-{#            window.location = window.location + '?user=' + ref.key; // add it as a hash to the URL.#}
             window.location = updateQueryStringParameter(window.location.href,user,ref.key);
         }
         if (typeof console !== 'undefined') {
@@ -142,7 +162,6 @@
     function getCollabRef(stud_id) {
         var ref = firebase.database().ref();
         ref = ref.child(stud_id);
-{#        console.log(ref);#}
         return ref;
     }
 </script>
@@ -171,6 +190,46 @@ function updateQueryStringParameter(uri, key, value) {
     return uri + separator + key + "=" + value;
   }
 }
+function similarity(s1, s2) {
+      var longer = s1;
+      var shorter = s2;
+      if (s1.length < s2.length) {
+        longer = s2;
+        shorter = s1;
+      }
+      var longerLength = longer.length;
+      if (longerLength === 0) {
+        return 1.0;
+      }
+      return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
+    }
+
+    function editDistance(s1, s2) {
+      s1 = s1.toLowerCase();
+      s2 = s2.toLowerCase();
+
+      var costs = [];
+      for (var i = 0; i <= s1.length; i++) {
+        var lastValue = i;
+        for (var j = 0; j <= s2.length; j++) {
+          if (i === 0)
+            costs[j] = j;
+          else {
+            if (j > 0) {
+              var newValue = costs[j - 1];
+              if (s1.charAt(i - 1) !== s2.charAt(j - 1))
+                newValue = Math.min(Math.min(newValue, lastValue),
+                  costs[j]) + 1;
+              costs[j - 1] = lastValue;
+              lastValue = newValue;
+            }
+          }
+        }
+        if (i > 0)
+          costs[s2.length] = lastValue;
+      }
+      return costs[s2.length];
+    }
 </script>
 <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
 
