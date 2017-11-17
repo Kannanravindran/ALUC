@@ -47,7 +47,7 @@
                         <span><strong>Group:</strong> {{ group }}</span><br>
                         <ul>
                             {% for each in groups[group] %}
-                                <li>{{ students[each[0]]['name'] }}</li>
+                                <li>{{ students[each[0]]['name'] }} : {{ students[each[0]]['score'] }}</li>
                             {% endfor %}
                         </ul>
                     </div>
