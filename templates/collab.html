@@ -28,8 +28,8 @@
         div .row.firetext{
             border-style: solid;
             border-color: #000000 #000000;
-{#            margin: 10px;#}
-{#            pointer-events: none;#}
+            margin: 10px;
+            pointer-events: none;
         }
         #firepad-container {
             width: 100%;
@@ -63,17 +63,17 @@
     <div class="row firediv">
         <div class="col-md-7 firediv" >
             <div class="row">
-                <h1><i>&nbsp;&nbsp;&nbsp;What was the best moment in your life?</i></h1>
+                <h1><i>&nbsp;&nbsp;&nbsp;Are Genetically Modified Organisms beneficial?</i></h1>
             </div>
             <div id="firepad-container"></div>
         </div>
         <div class="col-md-5 firediv">
             <div class="row firetext" >
-                <h4>Notes from <strong>@{{ users[0] }}</strong>&nbsp;Similarity Score: <p id="fire1-score"></p></h4>
+                <h4>Notes from <strong>@{{ users[0] }}</strong>&nbsp;Similarity Score: <span id="fire1-score"></span></h4>
                 <div id="firepad-container-1" class="firetext noselect" ></div>
             </div>
             <div class="row firetext">
-                <h4>Notes from <strong>@{{ users[1] }}</strong>&nbsp;Similarity Score: <p id="fire2-score"></p></h4>
+                <h4>Notes from <strong>@{{ users[1] }}</strong>&nbsp;Similarity Score: <span id="fire2-score"></span></h4>
                 <div id="firepad-container-2" class="firetext noselect"></div>
             </div>
         </div>
@@ -128,10 +128,10 @@
                 var words = fire_text.split(' ').length;
                 var sentence = fire_text.split('.').length;
                 console.log("Words: ",words," Characters: ",characters," Sentences: ",sentence);
-                if (characters >= 300 && words >= 90 && sentence >= 8) {
+                if (characters >= 150 && words >= 45 && sentence >= 4) {
                     $("#firepad-container-1").css('-webkit-filter', 'none');
                     $("#firepad-container-2").css('-webkit-filter', 'none');
-                }else if (characters < 300 || words < 90 || sentence < 8 ) {
+                }else if (characters < 150 || words < 45 || sentence < 4 ) {
                     $("#firepad-container-1").css('-webkit-filter', 'blur(15px)');
                     $("#firepad-container-2").css('-webkit-filter', 'blur(15px)');
                 }
