@@ -41,18 +41,25 @@
             </div>
         </div>
         <div class="col-md-8">
-        <div style="margin-left: 5%; margin-right: 5%">
-            {% for group in groups %}
-                    <div class="col-md-4" >
-                        <span><strong>Group:</strong> {{ group }}</span><br>
-                        <ul>
-                            {% for each in groups[group] %}
-                                <li>{{ students[each[0]]['name'] }} : {{ students[each[0]]['score'] }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-            {% endfor %}
-        </div>
+            <div class="row">
+                <div style="margin-left: 5%; margin-right: 5%">
+                    {% for group in groups %}
+                            <div class="col-md-4" >
+                                <span><strong>Group:</strong> {{ group }}</span><br>
+                                <ul>
+                                    {% for each in groups[group] %}
+                                        <li>{{ students[each[0]]['name'] }} : {{ students[each[0]]['score'] }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-8">
+                    <a href="/overview" class="btn btn-lg btn-primary" style="background: white;color: black;">Next</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
