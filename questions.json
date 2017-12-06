@@ -1,0 +1,48 @@
+{
+  "question": "The product of two consecutive negative integers is 1122. What are the numbers?",
+  "scoreRange": "61-70"
+},
+{
+  "question": "The 'Fight or Flight' response is regulated by which system?",
+  "scoreRange": "61-70"
+},
+{
+  "question": "Write pseudo code describing merge sort.",
+  "scoreRange": "61-70"
+},
+{
+  "question": "An object in launched directly upward at 64 feet per second (ft/s) from a platform 80 feet high. What will be the object's maximum height? When will it attain this height?",
+  "scoreRange": "71-80"
+},
+{
+  "question": "A professional football player who plays better when his games are nationally televised is exhibiting _____",
+  "scoreRange": "71-80"
+},
+{
+  "question": "Write pseudo code for an exhaustive enumeration variant of guess and check. ",
+  "scoreRange": "71-80"
+},
+{
+  "question": "An object is launched from ground level directly upward at 39.2 m/s. For how long is the object at or above a height of 34.3 meters?",
+  "scoreRange": "81-90"
+},
+{
+  "question": "Describe a situation which illustrates the motion parallax",
+  "scoreRange": "81-90"
+},
+{
+  "question": "Provide a Python implementation of a function first_N that takes a positive integer, n, as its only argument. The function should print the first n perfect squares that are not even numbers. E.g., if n were 2 it should print the perfect squares 1 and 9.",
+  "scoreRange": "81-90"
+},
+{
+  "question": "Carbon-14 has a half-life of 5730 yr. Write a model to represent the amount Q(t) of carbon-14 remaining after t years if no additional carbon is ingested.",
+  "scoreRange": "91-100"
+},
+{
+  "question": "Which emotion found in Robert Plutchik's list is missing from Ekman's original list? Describe a situation to express the emotion",
+  "scoreRange": "91-100"
+},
+{
+  "question": "At McDonalds one can buy chicken nuggets in packages containing 6, 9 or 20 pieces. Write a Python function that accepts an integer, num, as an argument and decides whether or not it is possible to buy num nuggets at McDonalds",
+  "scoreRange": "91-100"
+}
